@@ -1,0 +1,19 @@
+PROCEDURE "getData" ( in CARRID nvarchar(3) DEFAULT 'AA',
+    out revenue TABLE ( "CARRID" NVARCHAR(03) , "PRICE" DECIMAL(15,2) ) 
+)
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY INVOKER
+   --DEFAULT SCHEMA <default_schema_name>
+   READS SQL DATA AS
+BEGIN
+   /*************************************
+       Write your procedure logic 
+   *************************************/
+
+revenue =  SELECT CARRID , SUM("LOCCURAM") as PRICE FROM SBOOK 
+           GROUP BY CARRID;
+
+
+
+
+END
